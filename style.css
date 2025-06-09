@@ -1,21 +1,129 @@
 /* Custom font for a modern look */
 body {
     font-family: "Inter", sans-serif;
-}
-/* Custom spinner animation (no longer needed but kept in case of future additions) */
-@keyframes spin {
-    from { transform: rotate(0deg); }
-    to { transform: rotate(360deg); }
-}
-.spinner {
-    animation: spin 1s linear infinite;
+    margin: 0;
+    padding: 1rem; /* Equivalent to Tailwind's p-4 */
+    min-height: 100vh; /* Equivalent to Tailwind's min-h-screen */
+    display: flex; /* Equivalent to Tailwind's flex */
+    align-items: center; /* Equivalent to Tailwind's items-center */
+    justify-content: center; /* Equivalent to Tailwind's justify-center */
+    background: linear-gradient(to bottom right, #1a202c, #000000); /* Equivalent to Tailwind's bg-gradient-to-br from-gray-900 to-black */
 }
 
-/* Simple animation to fade in the content */
+/* Main container styles */
+.main-container {
+    background-color: #2d3748; /* Equivalent to Tailwind's bg-gray-800 */
+    color: #ffffff; /* Equivalent to Tailwind's text-white */
+    padding: 2rem; /* Equivalent to Tailwind's p-8 */
+    border-radius: 1rem; /* Equivalent to Tailwind's rounded-2xl */
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04); /* Equivalent to Tailwind's shadow-2xl */
+    max-width: 42rem; /* Equivalent to Tailwind's max-w-xl */
+    width: 100%; /* Equivalent to Tailwind's w-full */
+    text-align: center; /* Equivalent to Tailwind's text-center */
+    border: 2px solid #38a169; /* Equivalent to Tailwind's border-2 border-green-600 */
+}
+
+/* Responsive padding for main-container */
+@media (min-width: 768px) {
+    .main-container {
+        padding: 3rem; /* Equivalent to Tailwind's md:p-12 */
+    }
+}
+
+/* Website title styles */
+.website-title {
+    font-size: 2.25rem; /* Equivalent to Tailwind's text-4xl */
+    font-weight: 800; /* Equivalent to Tailwind's font-extrabold */
+    margin-bottom: 1.5rem; /* Equivalent to Tailwind's mb-6 */
+    background-clip: text;
+    -webkit-background-clip: text; /* For Safari/Chrome */
+    color: transparent; /* Equivalent to Tailwind's text-transparent */
+    background-image: linear-gradient(to right, #68d391, #4299e1); /* Equivalent to Tailwind's bg-gradient-to-r from-green-400 to-blue-600 */
+    text-shadow: 0 10px 15px rgba(0, 0, 0, 0.1), 0 4px 6px rgba(0, 0, 0, 0.05); /* Equivalent to Tailwind's drop-shadow-lg */
+    line-height: 1.25; /* Equivalent to Tailwind's leading-tight */
+}
+
+/* Responsive font size for website title */
+@media (min-width: 768px) {
+    .website-title {
+        font-size: 3.75rem; /* Equivalent to Tailwind's md:text-6xl */
+    }
+}
+
+/* Subtitle text styles */
+.subtitle-text {
+    font-size: 1.125rem; /* Equivalent to Tailwind's text-lg */
+    color: #d1d5db; /* Equivalent to Tailwind's text-gray-300 */
+    margin-bottom: 2rem; /* Equivalent to Tailwind's mb-8 */
+}
+
+/* Responsive font size for subtitle */
+@media (min-width: 768px) {
+    .subtitle-text {
+        font-size: 1.25rem; /* Equivalent to Tailwind's md:text-xl */
+    }
+}
+
+/* Responsive display for <br> tag */
+.hidden-md-block {
+    display: none; /* Equivalent to Tailwind's hidden */
+}
+@media (min-width: 768px) {
+    .hidden-md-block {
+        display: block; /* Equivalent to Tailwind's md:block */
+    }
+}
+
+/* Info box styles */
+.info-box {
+    background-color: #4a5568; /* Equivalent to Tailwind's bg-gray-700 */
+    padding: 1.5rem; /* Equivalent to Tailwind's p-6 */
+    border-radius: 0.75rem; /* Equivalent to Tailwind's rounded-xl */
+    border: 1px solid #4a5568; /* Equivalent to Tailwind's border border-gray-600 */
+    text-align: left; /* Equivalent to Tailwind's text-left */
+    margin-bottom: 2rem; /* Equivalent to Tailwind's mb-8 */
+}
+
+/* Info box main text styles */
+.info-box-text {
+    font-size: 1rem; /* Equivalent to Tailwind's text-md */
+    color: #e2e8f0; /* Equivalent to Tailwind's text-gray-200 */
+}
+
+/* Info box span (Information:) styles */
+.info-box-span {
+    font-weight: 700; /* Equivalent to Tailwind's font-bold */
+    color: #ef4444; /* Equivalent to Tailwind's text-red-400 */
+}
+
+/* Info box small text styles */
+.info-box-small-text {
+    font-size: 0.875rem; /* Equivalent to Tailwind's text-sm */
+    color: #a0aec0; /* Equivalent to Tailwind's text-gray-400 */
+    margin-top: 0.5rem; /* Equivalent to Tailwind's mt-2 */
+}
+
+/* Footer text styles */
+.footer-text {
+    margin-top: 2.5rem; /* Equivalent to Tailwind's mt-10 */
+    font-size: 0.875rem; /* Equivalent to Tailwind's text-sm */
+    color: #718096; /* Equivalent to Tailwind's text-gray-500 */
+}
+
+/* Animations */
 @keyframes fade-in {
     from { opacity: 0; transform: translateY(-20px); }
     to { opacity: 1; transform: translateY(0); }
 }
 .animate-fade-in {
     animation: fade-in 1s ease-out forwards;
+}
+
+/* Custom spinner animation (if ever reused) */
+@keyframes spin {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+.spinner {
+    animation: spin 1s linear infinite;
 }
