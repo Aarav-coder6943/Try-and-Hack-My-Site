@@ -11,7 +11,7 @@
         body {
             font-family: "Inter", sans-serif;
         }
-        /* Custom spinner animation */
+        /* Custom spinner animation (no longer needed but kept in case of future additions) */
         @keyframes spin {
             from { transform: rotate(0deg); }
             to { transform: rotate(360deg); }
@@ -45,7 +45,71 @@
             </p>
         </div>
 
-        
+        <!-- Optional: Small footer with a "Stay Safe" message -->
+        <p class="mt-10 text-sm text-gray-500">
+            Stay secure.
+        </p>
+    </div>
+
+    <!-- Simple animation to fade in the content -->
+    <style>
+        @keyframes fade-in {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .animate-fade-in {
+            animation: fade-in 1s ease-out forwards;
+        }
+    </style>
+
+    <!-- Firebase Integration (Gemini API logic removed) -->
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
+        import { getAuth, signInAnonymously, signInWithCustomToken, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
+        import { getFirestore } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
+
+        // Global variables provided by the Canvas environment
+        const appId = typeof __app_id !== 'undefined' ? __app_id : 'default-app-id';
+        const firebaseConfig = typeof __firebase_config !== 'undefined' ? JSON.parse(__firebase_config) : {};
+        const initialAuthToken = typeof __initial_auth_token !== 'undefined' ? __initial_auth_token : null;
+
+        let app;
+        let auth;
+        let db; // Firestore instance
+        let userId = 'anonymous'; // Default userId
+
+        // Initialize Firebase
+        try {
+            app = initializeApp(firebaseConfig);
+            auth = getAuth(app);
+            db = getFirestore(app); // Initialize Firestore
+            console.log("Firebase initialized.");
+        } catch (error) {
+            console.error("Error initializing Firebase:", error);
+        }
+
+        // Authenticate user with custom token or anonymously
+        onAuthStateChanged(auth, async (user) => {
+            if (user) {
+                userId = user.uid;
+                console.log("Authenticated with Firebase UID:", userId);
+            } else {
+                console.log("No user signed in. Attempting anonymous sign-in or custom token sign-in.");
+                try {
+                    if (initialAuthToken) {
+                        const userCredential = await signInWithCustomToken(auth, initialAuthToken);
+                        userId = userCredential.user.uid;
+                        console.log("Signed in with custom token. UID:", userId);
+                    } else {
+                        const userCredential = await signInAnonymously(auth);
+                        userId = userCredential.user.uid;
+                        console.log("Signed in anonymously. UID:", userId);
+                    }
+                } catch (error) {
+                    console.error("Firebase authentication error:", error);
+                }
+            }
+        });
     </script>
 </body>
 </html>
